@@ -1,0 +1,3 @@
+interface UserListModel {
+    userList: string[]
+}

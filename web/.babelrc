@@ -1,0 +1,8 @@
+// 바벨은 preset정의 (바벨 역할을 모아놓음)
+{
+    "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react",
+        "@babel/preset-typescript"
+    ]
+}

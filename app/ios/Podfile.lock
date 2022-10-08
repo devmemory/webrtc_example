@@ -1,0 +1,41 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_webrtc (0.9.4):
+    - Flutter
+    - WebRTC-SDK (= 104.5112.02)
+  - path_provider_ios (0.0.1):
+    - Flutter
+  - vibration (1.7.5):
+    - Flutter
+  - WebRTC-SDK (104.5112.02)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_webrtc (from `.symlinks/plugins/flutter_webrtc/ios`)
+  - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
+  - vibration (from `.symlinks/plugins/vibration/ios`)
+
+SPEC REPOS:
+  trunk:
+    - WebRTC-SDK
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_webrtc:
+    :path: ".symlinks/plugins/flutter_webrtc/ios"
+  path_provider_ios:
+    :path: ".symlinks/plugins/path_provider_ios/ios"
+  vibration:
+    :path: ".symlinks/plugins/vibration/ios"
+
+SPEC CHECKSUMS:
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_webrtc: aa130dfe1eca6625c2e2e51ce830abb495bdb06e
+  path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
+  vibration: 7d883d141656a1c1a6d8d238616b2042a51a1241
+  WebRTC-SDK: e0589abeb63db07a4ca1f45c82ba0f1a72e61622
+
+PODFILE CHECKSUM: 1024531dec93c91a8a57895ea2b3b95829f07094
+
+COCOAPODS: 1.11.3

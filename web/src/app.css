@@ -1,0 +1,23 @@
+.div_container>div:nth-child(1) {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.div_container>div:nth-child(2) {
+    text-align: center;
+}
+
+#video_remote, #video_local {
+    width: 400px;
+    height: 300px;
+    background-color: black;
+}
+
+.p_user {
+    cursor: pointer;
+}
+
+.p_user[data-selected="true"] {
+    color: red;
+}
