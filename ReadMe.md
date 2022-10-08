@@ -37,5 +37,5 @@ peer2 : 나도 방금 TURN한테 연결 했어
 ### Flutter : https://devmemory.tistory.com/106
 ### Outro : https://devmemory.tistory.com/107
 
-<img src="https://blog.kakaocdn.net/dn/nmaMc/btrN4QhH4Ce/rznTLhCEOyFT3MqrpKGsU0/img.gif"/>
+<img src="https://blog.kakaocdn.net/dn/bF8Ai6/btrN40YPzYf/jMMPYXzxN2lkMSTTfWAhG1/img.gif"/>
 <img src="https://blog.kakaocdn.net/dn/QdqbD/btrN39PCS47/BP6npIbkOcP6Jbs3swfZ31/img.gif"/>
