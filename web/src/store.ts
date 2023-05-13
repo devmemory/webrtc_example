@@ -1,6 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import webrtcSlice from "slice/webrtc_slice";
 
-export default configureStore({
+const store = configureStore({
     reducer: { webrtcSlice }
-})
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+
+export default store;

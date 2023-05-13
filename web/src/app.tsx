@@ -1,26 +1,28 @@
-import BtnComponent from "components/btn_component"
-import VideoComponent from "components/video_component"
-import webRTCController from "controller/webrtc_controller"
-import React, { useEffect } from "react"
-import './app.css'
-
-const controller = webRTCController()
+import BtnComponent from "components/btn_component";
+import VideoComponent from "components/video_component";
+import webRTCController, { ControllerType } from "controller/webrtc_controller";
+import React, { useEffect, useRef } from "react";
+import './app.css';
 
 const App = () => {
+    const controller = useRef<ControllerType>();
+
     useEffect(() => {
-        controller.init()
+        controller.current = webRTCController();
+
+        controller.current.init();
 
         return () => {
-            controller.disconnectSocket()
-        }
-    }, [])
+            controller.current.dispose();
+        };
+    }, []);
 
     return (
         <div className="div_container">
             <VideoComponent />
-            <BtnComponent controller={controller}/>
+            <BtnComponent controller={controller} />
         </div>
-    )
-}
+    );
+};
 
-export default App
+export default App;

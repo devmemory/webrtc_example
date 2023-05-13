@@ -1,62 +1,68 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { actionType, updateSingleValue } from 'slice/webrtc_slice'
+import { ControllerType } from 'controller/webrtc_controller';
+import React, { MutableRefObject } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionType, updateSingleValue } from 'slice/webrtc_slice';
+import { RootState } from 'store';
 
-const BtnComponent = ({controller}) => {
-    const model: RTCStateModel = useSelector((state: any) => {
-        return state.webrtcSlice
-    })
+type BtnCompProps = {
+    controller: MutableRefObject<ControllerType>;
+};
 
-    const dispatch = useDispatch()
+const BtnComponent = ({ controller }: BtnCompProps) => {
+    const model: RTCStateModel = useSelector((state: RootState) => state.webrtcSlice);
+
+    console.log({ model });
+
+    const dispatch = useDispatch();
 
     return (
         <div>
             {model.receivedCalling ? <>
-                <button onClick={() => controller.sendAnswer()}>
+                <button onClick={() => controller.current?.sendAnswer()}>
                     answer
                 </button>
-                <button onClick={() => controller.refuse()}>
+                <button onClick={() => controller.current?.refuse()}>
                     refuse
                 </button>
-            </> : <>
+            </> :
                 <div className="div_users">
                     {(model.userList?.length ?? 0) !== 0 ? <>
                         {model.userList.map((user, i) => {
                             return (<p key={`user - ${i}`} className="p_user" onClick={() => {
-                                dispatch(updateSingleValue({ value: user, type: actionType.to }))
+                                dispatch(updateSingleValue({ data: user, type: actionType.to }));
                             }}
                                 data-selected={user === model.to}>
                                 {i} : {user}
-                            </p>)
+                            </p>);
                         })}
 
-                        {model.isConnected ? <button onClick={() => controller.close(true)}>
+                        {model.isConnected ? <button onClick={() => controller.current?.close(true)}>
                             disconnect
                         </button> : <>
                             <label>
                                 <input
                                     type="checkbox"
                                     onChange={(e) => {
-                                        dispatch(updateSingleValue({ value: e.target.checked, type: actionType.audioOnly }))
+                                        dispatch(updateSingleValue({ data: e.target.checked, type: actionType.audioOnly }));
                                     }}
                                 />
                                 Audio only
                             </label>
-                            <button onClick={() => controller.sendOffer()} disabled={model.isCalling}>
+                            <button onClick={() => controller.current?.sendOffer()} disabled={model.isCalling}>
                                 Call
                             </button>
                         </>}
                     </> : "No users connected"}
                 </div>
-            </>}
+            }
 
-            {model.onMedia ? <button onClick={() => controller.turnOffMedia()}>
+            {model.onMedia ? <button onClick={() => controller.current?.turnOffMedia()}>
                 turn off media
-            </button> : <button onClick={() => controller.turnOnMedia()}>
+            </button> : <button onClick={() => controller.current?.turnOnMedia()}>
                 turn on media
             </button>}
         </div>
-    )
-}
+    );
+};
 
-export default BtnComponent
+export default BtnComponent;

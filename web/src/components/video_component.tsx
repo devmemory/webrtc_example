@@ -1,10 +1,9 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store';
 
 const VideoComponent = () => {
-    const model: RTCStateModel = useSelector((state: any) => {
-        return state.webrtcSlice
-    })
+    const model: RTCStateModel = useSelector((state: RootState) => state.webrtcSlice);
 
     return (
         <div>
@@ -28,7 +27,7 @@ const VideoComponent = () => {
                 </div>
             </>}
         </div>
-    )
-}
+    );
+};
 
-export default VideoComponent
+export default VideoComponent;

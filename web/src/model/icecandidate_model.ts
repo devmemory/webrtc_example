@@ -1,6 +1,5 @@
 interface IceCandidateModel {
     candidate: string,
-    sdpMid: string
+    sdpMid: string,
     sdpMLineIndex: number
-    to: string,
 }

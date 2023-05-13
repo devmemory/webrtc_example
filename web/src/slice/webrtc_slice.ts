@@ -1,4 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+
+type RTCType = {
+    type: string,
+    data: any;
+};
 
 export const enum actionType {
     userList = 'userList',
@@ -11,53 +16,46 @@ export const enum actionType {
     isCalling = 'isCalling'
 }
 
+const initialState = {
+    userList: [],
+    from: undefined,
+    to: undefined,
+    receivedCalling: false,
+    audioOnly: false,
+    onMedia: false,
+    isConnected: false,
+    isCalling: false
+} as RTCStateModel;
+
 const webRTCSlice = createSlice({
     name: 'webRTC',
-    initialState: { userList: [], from: undefined, to: undefined, receivedCalling: false, audioOnly: false, onMedia: false, isConnected: false, isCalling: false } as RTCStateModel,
+    initialState,
     reducers: {
-        updateSingleValue: (state, action) => {
-            const payload = action.payload
-            switch (payload.type) {
-                case actionType.userList:
-                    state.userList = payload.value
-                    break;
-                case actionType.from:
-                    state.from = payload.value
-                    break;
-                case actionType.to:
-                    state.to = payload.value
-                    break;
-                case actionType.receivedCalling:
-                    state.receivedCalling = payload.value
-                    break;
-                case actionType.audioOnly:
-                    state.audioOnly = payload.value
-                    break;
-                case actionType.onMedia:
-                    state.onMedia = payload.value
-                    break;
-                case actionType.isConnected:
-                    state.isConnected = payload.value
-                    break;
-                case actionType.isCalling:
-                    state.isCalling = payload.value
-                    break;
-            }
+        updateSingleValue: (state, action: PayloadAction<RTCType>) => {
+            console.log('[redux]', { payload: action.payload });
 
-            console.log('[reducer]', { state, action })
+            state[action.payload.type] = action.payload.data;
         },
-        receivedValues: (state, action) => {
-            state.receivedCalling = true
-            state.to = action.payload.to
-            state.audioOnly = action.payload.audioOnly
+        receivedValues: (state, action: PayloadAction<RTCStateModel>) => {
+            const { to, audioOnly } = action.payload;
+
+            state.receivedCalling = true;
+            state.to = to;
+            state.audioOnly = audioOnly;
         },
-        disconnectedValues: (state, _) => {
-            state.isCalling = false
-            state.isConnected = false
+        disconnectedValues: (state) => {
+            state.isCalling = false;
+            state.isConnected = false;
+            state.receivedCalling = false;
+
+            console.log('[state] isCalling', state.isCalling);
+        },
+        reset: (state) => {
+            Object.assign(state, initialState);
         }
     }
-})
+});
 
-export const { updateSingleValue, receivedValues, disconnectedValues } = webRTCSlice.actions
+export const { updateSingleValue, receivedValues, disconnectedValues, reset } = webRTCSlice.actions;
 
-export default webRTCSlice.reducer
+export default webRTCSlice.reducer;
