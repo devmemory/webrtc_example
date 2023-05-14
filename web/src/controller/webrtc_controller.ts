@@ -3,16 +3,7 @@ import { io } from "socket.io-client";
 import store from "store";
 import util from "util/util";
 
-export interface ControllerType {
-    init: () => void,
-    turnOnMedia: () => Promise<void>,
-    turnOffMedia: () => Promise<void>,
-    sendOffer: () => Promise<void>,
-    sendAnswer: () => Promise<void>,
-    refuse: () => Promise<void>;
-    close: (isClicked: boolean) => Promise<void>,
-    dispose: () => void;
-}
+export type ControllerType = ReturnType<typeof webRTCController>
 
 const webRTCController = () => {
     const socket = io(process.env.socket_ip);

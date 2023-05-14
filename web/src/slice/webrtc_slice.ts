@@ -7,7 +7,6 @@ type RTCType = {
 
 export const enum actionType {
     userList = 'userList',
-    from = 'from',
     to = 'to',
     receivedCalling = 'receivedCalling',
     audioOnly = 'audioOnly',
@@ -18,7 +17,6 @@ export const enum actionType {
 
 const initialState = {
     userList: [],
-    from: undefined,
     to: undefined,
     receivedCalling: false,
     audioOnly: false,
