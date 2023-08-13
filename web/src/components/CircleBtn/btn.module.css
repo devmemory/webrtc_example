@@ -1,0 +1,17 @@
+.div_circle {
+  background-color: var(--background-color);
+  color: var(--color);
+  width: var(--width);
+  height: var(--height);
+  margin: var(--margin);
+  font-size: var(--font-size);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.div_circle:hover {
+  opacity: 0.8px;
+  cursor: pointer;
+}
