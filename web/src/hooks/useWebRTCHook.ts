@@ -141,19 +141,19 @@ const useWebRTCHook = () => {
         );
 
       // 연결 되어있을때 tracking 다시 처리
-      // if (peer.current!.connectionState === "connected") {
-      //   peer.current!.getSenders().forEach((sender) => {
-      //     const track = localStream.current
-      //       ?.getTracks()
-      //       .find(
-      //         (track: MediaStreamTrack) => track.kind === sender.track?.kind
-      //       );
+      if (peer.current!.connectionState === "connected") {
+        peer.current!.getSenders().forEach((sender) => {
+          const track = localStream.current
+            ?.getTracks()
+            .find(
+              (track: MediaStreamTrack) => track.kind === sender.track?.kind
+            );
 
-      //     if (track !== undefined) {
-      //       sender.replaceTrack(track);
-      //     }
-      //   });
-      // }
+          if (track !== undefined) {
+            sender.replaceTrack(track);
+          }
+        });
+      }
 
       setOnMedia(true);
     } catch (e) {
